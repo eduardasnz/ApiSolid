@@ -33,7 +33,7 @@ describe("Nearby Gym e2e", () => {
         title: "Lion Gym",
         description: "uma nova academia",
         phone: "4445555231",
-        latitude: 12.6922098,
+        latitude: -12.6922098,
         longetude: -38.3344869,
       });
 

@@ -14,9 +14,9 @@ describe("Search Gym e2e", () => {
     await app.close();
   });
 
-  beforeEach(async () => {
-    await prisma.gym.deleteMany(); // limpa as academias
-  });
+  // beforeEach(async () => {
+  //   await prisma.gym.deleteMany(); // limpa as academias
+  // });
 
   it("should be able to search gym.", async () => {
     const { token } = await createAndAuthenticateUser(app);
@@ -28,8 +28,8 @@ describe("Search Gym e2e", () => {
         title: "Academia NODEJS",
         description: "uma nova academia",
         phone: "00129931231",
-        latitude: -12.707869,
-        longetude: -38.3050427,
+        latitude: -12.107869,
+        longetude: -38.1050427,
       });
 
     await request(app.server)
@@ -39,7 +39,7 @@ describe("Search Gym e2e", () => {
         title: "Academia Typescript",
         description: "uma nova academia",
         phone: "00129931231",
-        latitude: -12.707,
+        latitude: -12.707555,
         longetude: -38.3050777,
       });
 
