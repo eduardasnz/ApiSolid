@@ -1,0 +1,8 @@
+
+NODE_ENV="dev"
+
+PORT=0000
+
+DATABASE_URL="postgresql://john:doe@localhost:5432/db?schema=public"
+
+JWT_SECRET= algo
