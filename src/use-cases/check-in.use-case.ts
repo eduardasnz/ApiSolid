@@ -37,8 +37,8 @@ export class CheckInsUseCase {
 
     //calcular distancia entre o usuario e a academia
     const distante = getDistanceBetweenCoordinates(
-      { latitude: userLatidute, longitude: userLongetude },
-      { latitude: gym.latitude.toNumber(), longitude: gym.longetude.toNumber() }
+      { latitude: userLatidute, longetude: userLongetude },
+      { latitude: gym.latitude.toNumber(), longetude: gym.longetude.toNumber() }
     );
 
     const MAX_DISTANCE_IN_KM = 0.1;

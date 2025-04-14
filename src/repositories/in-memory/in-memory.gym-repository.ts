@@ -42,15 +42,15 @@ export class InMemoryGymRepository implements GymsRepository {
       const distance = getDistanceBetweenCoordinates(
         {
           latitude: params.latitude,
-          longitude: params.longetude,
+          longetude: params.longetude,
         },
         {
           latitude: item.latitude.toNumber(),
-          longitude: item.longetude.toNumber(),
+          longetude: item.longetude.toNumber(),
         }
       );
 
-      return distance < 10
+      return distance < 10;
     });
   }
 }

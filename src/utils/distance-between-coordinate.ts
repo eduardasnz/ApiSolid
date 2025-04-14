@@ -1,5 +1,5 @@
 export interface Coordinate {
-  longitude: number;
+  longetude: number;
   latitude: number;
 }
 
@@ -7,14 +7,14 @@ export function getDistanceBetweenCoordinates(
   from: Coordinate,
   to: Coordinate
 ) {
-  if (from.latitude === to.latitude && from.longitude === to.longitude) {
+  if (from.latitude === to.latitude && from.longetude === to.longetude) {
     return 0;
   }
 
   const fromRadian = (Math.PI * from.latitude) / 180;
   const toRadian = (Math.PI * to.latitude) / 180;
 
-  const theta = from.longitude - to.longitude;
+  const theta = from.longetude - to.longetude;
   const radTheta = (Math.PI * theta) / 180;
 
   let dist =
