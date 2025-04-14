@@ -19,38 +19,38 @@ describe("Search Gym e2e", () => {
       .post("/gyms")
       .set("Authorization", `Bearer ${token}`)
       .send({
-        title: "Also Gym",
-        description: "also new gym",
+        title: "Academia NODEJS",
+        description: "uma nova academia",
         phone: "00129931231",
         latitude: -12.707869,
-        longetude: -38.1120427,
-      });
-
-      await request(app.server)
-      .post("/gyms")
-      .set("Authorization", `Bearer ${token}`)
-      .send({
-        title: "new new Gym",
-        description: "new new new gym",
-        phone: "00129931231",
-        latitude: -12.707455,
         longetude: -38.3050427,
       });
 
-      const response = await request(app.server)
-      .get('/gyms/search')
+    await request(app.server)
+      .post("/gyms")
+      .set("Authorization", `Bearer ${token}`)
+      .send({
+        title: "Academia Typescript",
+        description: "uma nova academia",
+        phone: "00129931231",
+        latitude: -12.707,
+        longetude: -38.3050777,
+      });
+
+    const response = await request(app.server)
+      .get("/gyms/search")
       .query({
-        q: 'new new Gym'
+        q: "Typescript",
       })
       .set("Authorization", `Bearer ${token}`)
-      .send()
+      .send();
 
     expect(response.statusCode).toEqual(200);
     expect(response.body.gyms).toHaveLength(1);
     expect(response.body.gyms).toEqual([
       expect.objectContaining({
-        title: 'new new Gym'
-      })
+        title: "Academia Typescript",
+      }),
     ]);
   });
 });
