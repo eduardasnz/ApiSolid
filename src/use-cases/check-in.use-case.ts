@@ -9,7 +9,7 @@ import { MaxCheckInsError } from "./errors/max-check-ins";
 interface CheckInsRequest {
   userId: string;
   gymId: string;
-  userLatidute: number;
+  userLatitude: number;
   userLongetude: number;
 }
 
@@ -26,7 +26,7 @@ export class CheckInsUseCase {
   async execute({
     userId,
     gymId,
-    userLatidute,
+    userLatitude,
     userLongetude,
   }: CheckInsRequest): Promise<CheckInsReponse> {
     const gym = await this.gymRepository.findById(gymId);
@@ -37,7 +37,7 @@ export class CheckInsUseCase {
 
     //calcular distancia entre o usuario e a academia
     const distante = getDistanceBetweenCoordinates(
-      { latitude: userLatidute, longetude: userLongetude },
+      { latitude: userLatitude, longetude: userLongetude },
       { latitude: gym.latitude.toNumber(), longetude: gym.longetude.toNumber() }
     );
 

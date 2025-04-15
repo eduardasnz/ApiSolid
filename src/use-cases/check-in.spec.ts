@@ -36,7 +36,7 @@ describe("check-in use case", () => {
     const { checkIn } = await sut.execute({
       gymId: "gym-01",
       userId: "user-01",
-      userLatidute: -12.707869,
+      userLatitude: -12.707869,
       userLongetude: -38.3050427,
     });
 
@@ -48,7 +48,7 @@ describe("check-in use case", () => {
     await sut.execute({
       gymId: "gym-01",
       userId: "user-01",
-      userLatidute: -12.707869,
+      userLatitude: -12.707869,
       userLongetude: -38.3050427,
     });
 
@@ -56,7 +56,7 @@ describe("check-in use case", () => {
     const { checkIn } = await sut.execute({
       gymId: "gym-01",
       userId: "user-01",
-      userLatidute: -12.707869,
+      userLatitude: -12.707869,
       userLongetude: -38.3050427,
     });
 
@@ -68,7 +68,7 @@ describe("check-in use case", () => {
     await sut.execute({
       gymId: "gym-01",
       userId: "user-01",
-      userLatidute: -12.707869,
+      userLatitude: -12.707869,
       userLongetude: -38.3050427,
     });
     vi.setSystemTime(new Date(2025, 3, 16, 9, 0, 0));
@@ -76,7 +76,7 @@ describe("check-in use case", () => {
     const { checkIn } = await sut.execute({
       gymId: "gym-01",
       userId: "user-01",
-      userLatidute: -12.707869,
+      userLatitude: -12.707869,
       userLongetude: -38.3050427,
     });
 
@@ -97,7 +97,7 @@ describe("check-in use case", () => {
       sut.execute({
         gymId: "gym-02",
         userId: "user-01",
-        userLatidute: -12.707869,
+        userLatitude: -12.707869,
         userLongetude: -38.2849455,
       })
     ).rejects.toBeInstanceOf(MaxDistanceError);

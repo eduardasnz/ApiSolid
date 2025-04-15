@@ -29,7 +29,7 @@ describe("fetch nearby gym use case", () => {
     });
 
     const { gyms } = await sut.execute({
-      userLatidute: -12.707869,
+      userLatitude: -12.707869,
       userLongetude: -38.2849455,
     });
 

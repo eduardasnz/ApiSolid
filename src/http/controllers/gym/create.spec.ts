@@ -2,6 +2,7 @@ import { describe, it, expect, afterAll, beforeAll } from "vitest";
 import request from "supertest";
 import { app } from "../../../app";
 import { createAndAuthenticateUser } from "../../../utils/create-user-authenticated-user";
+import { prisma } from "../../../lib/prisma";
 
 describe("Create Gym e2e", () => {
   beforeAll(async () => {
@@ -9,6 +10,7 @@ describe("Create Gym e2e", () => {
   });
 
   afterAll(async () => {
+    await prisma.gym.deleteMany();
     await app.close();
   });
   
@@ -20,7 +22,7 @@ describe("Create Gym e2e", () => {
     .post("/gyms")
     .set("Authorization", `Bearer ${token}`)
     .send({
-      title: "Academia Bad Bunny",
+      title: "Academia SmartFit",
       description: "academia do teste create",
       phone: "8199282930",
       latitude: -12.707869,

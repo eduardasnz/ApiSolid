@@ -1,7 +1,8 @@
 import request from "supertest";
-import { afterAll, beforeAll, describe, expect, it } from "vitest";
+import { afterAll, beforeAll, beforeEach, describe, expect, it } from "vitest";
 import { app } from "../../../app";
 import { createAndAuthenticateUser } from "../../../utils/create-user-authenticated-user";
+import { prisma } from "../../../lib/prisma";
 
 describe("Search Gym e2e", () => {
   beforeAll(async () => {
@@ -11,6 +12,11 @@ describe("Search Gym e2e", () => {
   afterAll(async () => {
     await app.close();
   });
+
+  beforeEach(async () => {
+    await prisma.checkIn.deleteMany();
+    await prisma.gym.deleteMany();    
+  })
 
   it("should be able to search gym.", async () => {
     const { token } = await createAndAuthenticateUser(app);
@@ -22,8 +28,8 @@ describe("Search Gym e2e", () => {
         title: "Ginásio Perto",
         description: "Um ginásio perto de você",
         phone: "00129931231",
-        latitude: -12.100000, // Exemplo de latitude
-        longetude: -38.100000, // Exemplo de longitude
+        latitude: -12.707869,
+        longetude: -38.2849455,
       });
 
     await request(app.server)
@@ -33,17 +39,16 @@ describe("Search Gym e2e", () => {
         title: "Ginásio Longe",
         description: "Um ginásio bem longe",
         phone: "00129931232",
-        latitude: -15.000000, 
-        longetude: -40.000000, 
+        latitude: -15.1515151, 
+        longetude: -40.1098273, 
       });
 
 
     const response = await request(app.server)
-    .get("/gyms/nearby")
+    .get("/gyms/search")
     .query({
-      query: "Ginásio Perto",
-      latitude: -12.100500, 
-      longetude: -38.100500,
+      q: "Ginásio",
+      page: 1
     })
     .set("Authorization", `Bearer ${token}`)
     .send();

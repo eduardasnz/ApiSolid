@@ -7,16 +7,16 @@ export async function SearchGymController(
   reply: FastifyReply
 ) {
   const SearchGymQuerySchema = z.object({
-    query: z.string(),
+    q: z.string(),
     page: z.coerce.number().default(1),
   });
 
-  const { query, page } = SearchGymQuerySchema.parse(request.query);
+  const { q, page } = SearchGymQuerySchema.parse(request.query);
 
   const searchGymUseCase = makeSearchGymUseCase();
 
   const { gyms } = await searchGymUseCase.execute({
-    query,
+    query: q,
     page
   });
 
