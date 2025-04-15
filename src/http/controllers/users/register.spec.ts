@@ -1,31 +1,27 @@
+import { describe, it, expect, afterAll, beforeAll, beforeEach } from "vitest";
 import request from "supertest";
-import { afterAll, beforeAll, beforeEach, describe, expect, it } from "vitest";
 import { app } from "../../../app";
 import { prisma } from "../../../lib/prisma";
 
-describe("register e2e", () => {
+describe("Register e2e", () => {
   beforeAll(async () => {
     await app.ready();
   });
 
   afterAll(async () => {
     await app.close();
-  });
-
-  beforeEach(async () => {
-    // Deletar o usuário antes do teste
     await prisma.user.deleteMany({
       where: {
-        email: "johndoef.4@exemple.com",
+        email: "vanessa@exemple.com",
       },
     });
   });
-
-  it("should be able to register.", async () => {
+  
+  it("should be able to register", async () => {
     const response = await request(app.server).post("/users").send({
-      name: "john doe",
-      email: "johndoef.4@exemple.com",
-      password: "00010",
+      name: "vanessa",
+      email: "vanessa@exemple.com",
+      password: "101010",
     });
 
     expect(response.statusCode).toEqual(201);

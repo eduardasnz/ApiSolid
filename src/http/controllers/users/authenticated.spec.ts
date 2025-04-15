@@ -1,8 +1,8 @@
+import { describe, it, expect, afterAll, beforeAll } from "vitest";
 import request from "supertest";
-import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { app } from "../../../app";
 
-describe("authenticated e2e", () => {
+describe("Authenticated e2e", () => {
   beforeAll(async () => {
     await app.ready();
   });
@@ -11,16 +11,16 @@ describe("authenticated e2e", () => {
     await app.close();
   });
 
-  it("should be able to authenticated.", async () => {
+  it("should be able to authenticated user", async () => {
     await request(app.server).post("/users").send({
-      name: "john doe 2",
-      email: `johndoeef4@gmail.com`,
-      password: "00010",
+      name: "Olivia",
+      email: "olivia1d@exemple.com",
+      password: "101010",
     });
 
     const response = await request(app.server).post("/sessions").send({
-      email: `johndoeef4@gmail.com`,
-      password: "00010",
+      email: "olivia1d@exemple.com",
+      password: "101010",
     });
 
     expect(response.statusCode).toEqual(200);

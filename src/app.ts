@@ -1,10 +1,9 @@
 import { ZodError } from "zod";
-import { UsersRoutes } from "./http/controllers/users/routes"; 
+import { UsersRoutes } from "./http/controllers/users/routes";
 import fastify from "fastify";
 import { env } from "./env";
 import fastifyJwt from "@fastify/jwt";
-import { GymsRoutes } from "./http/controllers/gyms/routes";
-import { CheckInRoutes } from "./http/controllers/checkIns/routes";
+import { GymRoutes } from "./http/controllers/gym/routes";
 
 export const app = fastify();
 
@@ -13,8 +12,8 @@ app.register(fastifyJwt, {
 });
 
 app.register(UsersRoutes);
-app.register(GymsRoutes);
-app.register(CheckInRoutes);
+app.register(GymRoutes);
+// app.register(CheckInRoutes);
 
 app.setErrorHandler((error, request, reply) => {
   if (error instanceof ZodError) {
